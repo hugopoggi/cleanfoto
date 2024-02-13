@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Remova o Fundo da Imagem</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        <input type="file" name="image">
+        <input type="submit" value="Enviar">
+    </form>
+    {% if output_path %}
+        <img src="{{ output_path }}" alt="Imagem sem Fundo">
+    {% endif %}
+</body>
+</html>
