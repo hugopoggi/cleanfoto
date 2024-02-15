@@ -19,23 +19,21 @@ def index():
             input_image = input_image.convert('RGB')
             output_image = remove(input_image)
 
-            # Construa o caminho do arquivo corretamente
             output_filename = 'output_' + uploaded_file.filename
             output_path = os.path.join(app.root_path, 'static', output_filename)
 
             output_image.save(output_path, format='PNG')
 
-            # Redirecione para a página de resultado
             return redirect(url_for('resultado', filename=output_filename))
 
     return render_template('index.html', form=form)
 
 @app.route('/resultado/<filename>')
 def resultado(filename):
-    # Construa o caminho do arquivo corretamente
+    
     output_path = os.path.join(app.root_path, 'static', filename)
 
-    # Envie o arquivo como anexo para download
+
     return send_file(output_path, as_attachment=True)
 
 if __name__ == '__main__':

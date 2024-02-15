@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remova o fundo de uma foto de perfil</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
-    <h1>Remova o Fundo da Imagem</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {{ form.csrf_token }}
-        {{ form.hidden_tag() }}
-        <input type="file" name="image">
-        <input type="submit" value="Enviar">
-    </form>
-    {% if output_path %}
-        <img src="{{ output_path }}" alt="Imagem sem Fundo">
-    {% endif %}
+    <div class="container">
+        <div class="square">
+            <h1>Remova o fundo de uma foto de perfil</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {{ form.hidden_tag() }}
+                <div class="input-group">
+                    <label for="image">Escolha uma foto:</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
+                <button type="submit">Enviar</button> 
+            </form>
+            {% if output_path %}
+                <img src="{{ output_path }}" alt="Imagem sem Fundo">
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
